@@ -25,17 +25,17 @@ HighestScoringSelector.prototype.select = function(context, qualifiers, default)
 	//loop through the qualifiers and pick the highest one
 	var qualifierPromises = [];
 	for (var qualifier in qualifiers) {
-		qualifierPromises.push(qualfier.score(context));
+		qualifierPromises.push(qualfier.score(context).then(value => return { qualifier: qualifier, value: value }));
 	}
 	return Promise.all(qualifierPromises)
 	    .then(values => {
-	    	var highest = defualt;
+	    	var highest = { qualifier: null, value: 0 };
 	    	for (var value in values) {
-	    		if (value > highest) {
+	    		if (value.value > highest.value) {
 	    			highest = value;
 	    		}
 	    	}
-	    	return Promise.resolve(highest);
+	    	return Promise.resolve(highest.qualifier);
 	    })
 	    .catch(error => { return Promise.reject(error); } );
 }
@@ -52,13 +52,13 @@ FirstScoringSelector.prototype.select = function(context, qualifiers, default) {
 	//loop through the qualifiers and pick the first one that succeeds
 	var qualifierPromises = [];
 	for (var qualifier in qualifiers) {
-		qualifierPromises.push(qualfier.score(context));
+		qualifierPromises.push(qualfier.score(context).then(value => return { qualifier: qualifier, value: value }));
 	}
 	return Promise.all(qualifierPromises)
 	    .then(values => {
 	    	for (var value in values) {
-	    		if (value > default) {
-	    			return Promise.resolve(value);
+	    		if (value.value > default) {
+	    			return Promise.resolve(value.qualifier);
 	    		}
 	    	}
 	    	return Promise.resolve(defualt);
