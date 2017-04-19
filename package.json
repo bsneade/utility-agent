@@ -2,7 +2,7 @@
   "name": "utility-agent",
   "version": "1.0.0",
   "description": "Utility Agent AI",
-  "main": "index.js",
+  "main": "UtilityAgent.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
