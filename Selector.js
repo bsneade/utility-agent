@@ -68,7 +68,7 @@ FirstScoringSelector.prototype.select = function(context, qualifiers, default) {
 
 //Do the exports
 module.exports = { 
-	Selector: Selector,
-	HighestScoringSelector: HighestScoringSelector,
-	FirstScoringSelector: FirstScoringSelector
+	Selector,
+	HighestScoringSelector,
+	FirstScoringSelector
 };
