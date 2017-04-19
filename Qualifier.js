@@ -1,7 +1,8 @@
 
 /** Calculates a score that represents the utility/usefulness of its associated action. */
-function Qualifier(scorers) {
+function Qualifier(scorers, action) {
 	this.scorers = scorers;
+	this.action = action;
 }
 
 //set up the base score function
