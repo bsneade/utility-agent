@@ -1,4 +1,4 @@
-
+let winston = require("winston");
 
 /** 
   Selects the best Qualifier from the Qualifiers attached to the Selector 
@@ -9,8 +9,8 @@ function Selector() {}
   Selects a value from the qualifiers.
   Node: default implementation just returns the default value
 */
-Qualifier.prototype.select = function(context, qualifiers, default) {
-	return Promise.resolve(default);
+Selector.prototype.select = function(context, qualifiers, defaultValue) {
+	return Promise.resolve(defaultValue);//FIXME - should return a qualifier
 }
 
 /**
@@ -21,20 +21,16 @@ function HighestScoringSelector() {
 }
 // Make our prototype so we inherit the parent's methods
 HighestScoringSelector.prototype = Object.create(Selector.prototype);
-HighestScoringSelector.prototype.select = function(context, qualifiers, default) {
+HighestScoringSelector.prototype.select = function(context, qualifiers, defaultValue) {
 	//loop through the qualifiers and pick the highest one
-	var qualifierPromises = [];
-	for (var qualifier in qualifiers) {
-		qualifierPromises.push(qualfier.score(context).then(value => return { qualifier: qualifier, value: value }));
-	}
+	var qualifierPromises = qualifiers.map( qualifier => {
+		//TODO - something seems wrong here, but it seems to work
+		return qualifier.score(context).then(value => { return { qualifier: qualifier, value: value } });
+	});
 	return Promise.all(qualifierPromises)
 	    .then(values => {
-	    	var highest = { qualifier: null, value: 0 };
-	    	for (var value in values) {
-	    		if (value.value > highest.value) {
-	    			highest = value;
-	    		}
-	    	}
+			var highest = values.reduce((prev, current) => (prev.value > current.value) ? prev : current);
+			winston.debug("HighestScoringSelector::select - " + JSON.stringify(highest));
 	    	return Promise.resolve(highest.qualifier);
 	    })
 	    .catch(error => { return Promise.reject(error); } );
@@ -48,20 +44,19 @@ function FirstScoringSelector() {
 }
 // Make our prototype so we inherit the parent's methods
 FirstScoringSelector.prototype = Object.create(Selector.prototype);
-FirstScoringSelector.prototype.select = function(context, qualifiers, default) {
+FirstScoringSelector.prototype.select = function(context, qualifiers, defaultValue) {
 	//loop through the qualifiers and pick the first one that succeeds
-	var qualifierPromises = [];
-	for (var qualifier in qualifiers) {
-		qualifierPromises.push(qualfier.score(context).then(value => return { qualifier: qualifier, value: value }));
-	}
+	var qualifierPromises = qualifiers.map( qualifier => {
+		return qualifier.score(context).then(value => { return { qualifier: qualifier, value: value } });
+	});
 	return Promise.all(qualifierPromises)
 	    .then(values => {
 	    	for (var value in values) {
-	    		if (value.value > default) {
+	    		if (value.value > defaultValue) {
 	    			return Promise.resolve(value.qualifier);
 	    		}
 	    	}
-	    	return Promise.resolve(defualt);
+	    	return Promise.resolve(defaultValue); //FIXME - should return a qualifier
 	    })
 	    .catch(error => { return Promise.reject(error); } );
 }

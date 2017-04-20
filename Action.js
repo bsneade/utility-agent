@@ -1,3 +1,4 @@
+let winston = require("winston");
 
 /** The action that the AI executes when a specific Qualifier is selected. */
 function Action() {}
@@ -12,4 +13,9 @@ Action.prototype.terminate = function(context) {
 
 }
 
-module.exports = { Action };
+function BaseAction() {
+	Action.apply(this);
+}
+BaseAction.prototype = Object.create(Action.prototype);
+
+module.exports = { Action, BaseAction };

@@ -1,3 +1,4 @@
+let winston = require("winston");
 
 /** Calculates a score that represents the utility/usefulness of its associated action. */
 function Qualifier(scorers, action) {
@@ -13,9 +14,9 @@ Qualifier.prototype.score = function(context) {
 /**
   Returns the sum of all Scorers if all the scores are above the threshold
 */
-function AllOrNothingQualifier(scorers, threshold) {
+function AllOrNothingQualifier(scorers, action, threshold) {
 	this.threshold = threshold;
-	Qualifier.call(this, scorers);
+	Qualifier.call(this, scorers, action);
 }
 AllOrNothingQualifier.prototype = Object.create(Qualifier.prototype);
 AllOrNothingQualifier.prototype.score = function(context) {
@@ -37,9 +38,9 @@ AllOrNothingQualifier.prototype.score = function(context) {
 /**
   Returns a fixed score
 */
-function FixedQualifier(scorers, value) {
+function FixedQualifier(scorers, action, value) {
 	this.value = value;
-	Qualifier.call(this, scorers);
+	Qualifier.call(this, scorers, action);
 }
 FixedQualifier.prototype = Object.create(Qualifier.prototype);
 FixedQualifier.prototype.score = function(context) {
@@ -47,18 +48,17 @@ FixedQualifier.prototype.score = function(context) {
 }
 
 /**
-  Returns a fixed score
+  Returns the sum of all Scorers
 */
-function SumOfChildrenQualifier(scorers) {
-	Qualifier.call(this, scorers);
+function SumOfChildrenQualifier(scorers, action) {
+	Qualifier.call(this, scorers, action);
 }
 SumOfChildrenQualifier.prototype = Object.create(Qualifier.prototype);
 SumOfChildrenQualifier.prototype.score = function(context) {
 	//loop through the scorers and sum them up
-	var scorerPromises = [];
-	for (var scorer in this.scorers) {
-		scorerPromises.push(scorer.score(context));
-	}
+	var scorerPromises = this.scorers.map(scorer => {
+		return scorer.score(context);
+	});
 	return Promise.all(scorerPromises)
 	    .then(values => {
 	    	var sum = values.reduce(function(acc, val) {
