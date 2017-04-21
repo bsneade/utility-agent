@@ -1,5 +1,5 @@
-let { Action, BaseAction} = require("./Action.js");
-let Context = require("./Context.js");
+let { Action, BaseAction } = require("./Action.js");
+let { Context, BaseContext } = require("./Context.js");
 let { Qualifier, AllOrNothingQualifier, FixedQualifier, SumOfChildrenQualifier } = require("./Qualifier.js");
 let { Scorer, BaseScorer } = require("./Scorer.js");
 let { Selector, HighestScoringSelector, FirstScoringSelector } = require("./Selector.js");
@@ -16,7 +16,7 @@ UtilityAgent.prototype.tick = function(context, defaultValue) {
 		winston.debug("UtilityAgent: Performing Tick")
         return this.selector.select(context, this.qualifiers, defaultValue)
             .then(value => {
-            	winston.info("UtilityAgent::tick - selected action: " + JSON.stringify(value));
+            	winston.debug("UtilityAgent::tick - selected action: " + JSON.stringify(value));
             	return Promise.resolve(value.action);
             })
             .catch(error => { 
@@ -32,7 +32,7 @@ UtilityAgent.prototype.tick = function(context, defaultValue) {
 module.exports = {
    UtilityAgent : UtilityAgent,
    Action : BaseAction,
-   Context : Context,
+   Context : BaseContext,
    Qualifier : Qualifier,
    AllOrNothingQualifier : AllOrNothingQualifier, 
    FixedQualifier : FixedQualifier, 

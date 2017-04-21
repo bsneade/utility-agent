@@ -3,7 +3,11 @@
 function Context() {}
 
 Context.prototype.somefunction = function() {
-	
 }
 
-module.exports = { Context };
+function BaseContext() {
+	Context.apply(this);
+}
+BaseContext.prototype = Object.create(Context.prototype);
+
+module.exports = { Context, BaseContext };

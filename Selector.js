@@ -7,10 +7,11 @@ function Selector() {}
 
 /** 
   Selects a value from the qualifiers.
-  Node: default implementation just returns the default value
+  Note: default implemenation returns null
 */
 Selector.prototype.select = function(context, qualifiers, defaultValue) {
-	return Promise.resolve(defaultValue);//FIXME - should return a qualifier
+	winston.warn("Selector::select - Default select implemenation is being used");
+	return Promise.resolve(null);
 }
 
 /**
