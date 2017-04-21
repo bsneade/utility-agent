@@ -4,11 +4,14 @@
   "description": "Utility Agent AI",
   "main": "UtilityAgent.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Brad Sneade",
   "license": "MIT",
   "dependencies": {
     "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "jest": "^19.0.2"
   }
 }

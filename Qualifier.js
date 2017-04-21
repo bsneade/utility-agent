@@ -21,16 +21,16 @@ function AllOrNothingQualifier(scorers, action, threshold) {
 AllOrNothingQualifier.prototype = Object.create(Qualifier.prototype);
 AllOrNothingQualifier.prototype.score = function(context) {
 	//loop through the scorers and sum them up
-	var scorerPromises = [];
-	for (var scorer in this.scorers) {
-		scorerPromises.push(scorer.score(context));
-	}
+	var scorerPromises = this.scorers.map(scorer => {
+		return scorer.score(context);
+	});
 	return Promise.all(scorerPromises)
 	    .then(values => {
 	    	var sum = values.reduce(function(acc, val) {
   					return acc + val;
 				}, 0);
-	    	return Promise.resolve(sum > this.threshold ? sum : this.threshold);
+	    	winston.debug("AllOrNothingQualifier::score - sum is " + sum + ", threshold is " + this.threshold);
+	    	return Promise.resolve(sum > this.threshold ? sum : 0);
 	    })
 	    .catch(error => { return Promise.reject(error); } );
 }
