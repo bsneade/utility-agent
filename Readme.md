@@ -1,6 +1,6 @@
 # utility-agent
 
-A JavaScript implemtnation of a Utility Agent
+A JavaScript implementation of a Utility Agent
 
 ## What is a Utility Agent
 
