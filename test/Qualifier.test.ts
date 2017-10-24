@@ -1,6 +1,6 @@
-const { Qualifier, AllOrNothingQualifier, FixedQualifier, SumOfChildrenQualifier } = require('../Qualifier');
+import { AllOrNothingQualifier, FixedQualifier, SumOfChildrenQualifier, Action, Context } from "../src/";
 
-test('All Or Nothing Qualifier, Is above threshold', () => {
+it('All Or Nothing Qualifier, Is above threshold', () => {
 	//set up our mocks
 	var action = jest.fn();
 

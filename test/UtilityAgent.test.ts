@@ -1,5 +1,3 @@
-const UtilityAgent = require('../UtilityAgent');
-
 test('Tick', () => {
     //set up our mocks
     var action = jest.fn();

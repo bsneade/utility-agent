@@ -1,3 +1,5 @@
+import * as winston from "winston";
+
 class UtilityAgent {
     selector: Selector;
     qualifiers: Qualifier[];
@@ -9,18 +11,18 @@ class UtilityAgent {
 
     tick(context: Context, defaultValue: number): Promise<Action> {
         try {
-            // winston.debug("UtilityAgent: Performing Tick")
+            winston.debug("UtilityAgent: Performing Tick")
             return this.selector.select(context, this.qualifiers, defaultValue)
                 .then(value => {
-                    // winston.debug("UtilityAgent::tick - selected action: " + JSON.stringify(value));
+                    winston.debug("UtilityAgent::tick - selected action: " + JSON.stringify(value));
                     return Promise.resolve(value.action);
                 })
                 .catch(error => {
-                    // winston.error("UtilityAgent::tick - error with selector: " + error);
+                    winston.error("UtilityAgent::tick - error with selector: " + error);
                     return Promise.reject(error);
                 });
         } catch (error) {
-            // winston.error("UtilityAgent::tick - error: " + error);
+            winston.error("UtilityAgent::tick - error: " + error);
             return Promise.reject(error);
         }
     }

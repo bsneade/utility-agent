@@ -1,5 +1,3 @@
-const { Selector, HighestScoringSelector, FirstScoringSelector } = require('../Selector');
-
 var hsSelector = new HighestScoringSelector();
 
 test('HighestScoringSelector select', () => {

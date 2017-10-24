@@ -1,3 +1,5 @@
+import * as winston from "winston";
+
 /**
  * Selects the Qualifier that returns the highest score.
  */
@@ -11,7 +13,7 @@ class HighestScoringSelector implements Selector {
         return Promise.all(qualifierPromises)
             .then(values => {
                 const highest = values.reduce((prev, current) => (prev.value > current.value) ? prev : current);
-                // winston.debug("HighestScoringSelector::select - " + JSON.stringify(highest));
+                winston.debug("HighestScoringSelector::select - " + JSON.stringify(highest));
                 return Promise.resolve(highest.qualifier);
             })
             .catch(error => { return Promise.reject(error); });

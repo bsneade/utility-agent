@@ -1,3 +1,5 @@
+import * as winston from "winston";
+
 /**
  * Returns the sum of all Scorers if all the scores are above the threshold
  */
@@ -22,7 +24,7 @@ class AllOrNothingQualifier implements Qualifier {
                 const sum = values.reduce(function(acc, val) {
                     return acc + val;
                 }, 0);
-                // winston.debug("AllOrNothingQualifier::score - sum is " + sum + ", threshold is " + this.threshold);
+                winston.debug("AllOrNothingQualifier::score - sum is " + sum + ", threshold is " + this.threshold);
                 return Promise.resolve(sum > this.threshold ? sum : 0);
             })
             .catch(error => { return Promise.reject(error); });
