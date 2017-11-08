@@ -1,9 +1,13 @@
 import * as winston from "winston";
 
+import { Qualifier } from "./Qualifier";
+import { Context } from "./Context";
+import { Selector } from "./Selector";
+
 /**
  * Selects the Qualifier that returns the highest score.
  */
-class HighestScoringSelector implements Selector {
+export class HighestScoringSelector implements Selector {
     select(context: Context, qualifiers: Qualifier[], defaultValue: number): Promise<Qualifier> {
         // loop through the qualifiers and pick the highest one
         const qualifierPromises = qualifiers.map(qualifier => {

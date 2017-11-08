@@ -1,6 +1,11 @@
 import * as winston from "winston";
 
-class UtilityAgent {
+import { Selector } from "./Selector";
+import { Qualifier } from "./Qualifier";
+import { Context } from "./Context";
+import { Action } from "./Action";
+
+export class UtilityAgent {
     selector: Selector;
     qualifiers: Qualifier[];
 
@@ -11,7 +16,7 @@ class UtilityAgent {
 
     tick(context: Context, defaultValue: number): Promise<Action> {
         try {
-            winston.debug("UtilityAgent: Performing Tick")
+            winston.debug("UtilityAgent: Performing Tick");
             return this.selector.select(context, this.qualifiers, defaultValue)
                 .then(value => {
                     winston.debug("UtilityAgent::tick - selected action: " + JSON.stringify(value));

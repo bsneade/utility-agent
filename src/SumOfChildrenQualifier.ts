@@ -1,13 +1,15 @@
+import { Action } from "./Action";
+import { Scorer } from "./Scorer";
+import { Qualifier } from "./Qualifier";
+import { Context } from "./Context";
+
 /**
  * Returns the sum of all Scorers
  */
-class SumOfChildrenQualifier implements Qualifier {
-    scorers: Scorer[];
-    action: Action;
+export class SumOfChildrenQualifier extends Qualifier {
 
-    constrcutor(scorers: Scorer[], action: Action) {
-        this.scorers = scorers;
-        this.action = action;
+    constructor(scorers: Scorer[], action: Action) {
+        super(scorers, action);
     }
 
     score(context: Context) {

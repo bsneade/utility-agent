@@ -1,5 +1,7 @@
+import { Context } from "./Context";
+
 /** A method for calculating scores that can be reused across Qualifiers. */
-abstract class Scorer {
+export abstract class Scorer {
     /** Do the scoring */
     abstract score(context: Context): number;
 

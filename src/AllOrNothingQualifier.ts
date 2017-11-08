@@ -1,16 +1,18 @@
 import * as winston from "winston";
 
+import { Qualifier } from "./Qualifier";
+import { Action } from "./Action";
+import { Scorer } from "./Scorer";
+import { Context } from "./Context";
+
 /**
  * Returns the sum of all Scorers if all the scores are above the threshold
  */
-class AllOrNothingQualifier implements Qualifier {
-    scorers: Scorer[];
-    action: Action;
-    threshold: number;
+export class AllOrNothingQualifier extends Qualifier {
+    readonly threshold: number;
 
-    constrcutor(scorers: Scorer[], action: Action, threshold: number) {
-        this.scorers = scorers;
-        this.action = action;
+    constructor(scorers: Scorer[], action: Action, threshold: number) {
+        super(scorers, action);
         this.threshold = threshold;
     }
 

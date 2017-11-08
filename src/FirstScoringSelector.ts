@@ -1,7 +1,11 @@
+import { Context } from "./Context";
+import { Qualifier } from "./Qualifier";
+import { Selector } from "./Selector";
+
 /**
  * Selects the first Qualifier that returns a score higher than the score of the Default Qualifier.
  */
-class FirstScoringSelector implements Selector {
+export class FirstScoringSelector implements Selector {
     select(context: Context, qualifiers: Qualifier[], defaultValue: number): Promise<Qualifier> {
         // loop through the qualifiers and pick the first one that succeeds
         const qualifierPromises = qualifiers.map(qualifier => {
