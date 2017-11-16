@@ -1,3 +1,5 @@
+import * as winston from "winston";
+
 import { HighestScoringSelector } from "../HighestScoringSelector";
 import { FirstScoringSelector } from "../FirstScoringSelector";
 

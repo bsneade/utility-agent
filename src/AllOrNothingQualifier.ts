@@ -17,18 +17,16 @@ export class AllOrNothingQualifier extends Qualifier {
     }
 
     score(context: Context) {
-        // loop through the scorers and sum them up
-        const scorerPromises = this.scorers.map(scorer => {
-            return scorer.score(context);
-        });
-        return Promise.all(scorerPromises)
-            .then(values => {
-                const sum = values.reduce(function(acc, val) {
-                    return acc + val;
-                }, 0);
-                winston.debug("AllOrNothingQualifier::score - sum is " + sum + ", threshold is " + this.threshold);
-                return Promise.resolve(sum > this.threshold ? sum : 0);
-            })
-            .catch(error => { return Promise.reject(error); });
+        // calculate the sum
+        const sum = this.scorers
+            // loop through the scorers and get the scores
+            .map(scorer => scorer.score(context))
+            // sum them up
+            .reduce((acc, val) => acc + val, 0);
+            console.log(`AllOrNothingQualifier::score - sum is ${sum}, threshold is ${this.threshold}`);
+        winston.debug(`AllOrNothingQualifier::score - sum is ${sum}, threshold is ${this.threshold}`);
+
+        // return the the sum if over the threshold, or 0
+        return Promise.resolve(sum > this.threshold ? sum : 0);
     }
 }
