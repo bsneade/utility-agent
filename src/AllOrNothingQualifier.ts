@@ -1,4 +1,4 @@
-import * as winston from "winston";
+import * as logger from "winston";
 
 import { Qualifier } from "./Qualifier";
 import { Action } from "./Action";
@@ -13,6 +13,7 @@ export class AllOrNothingQualifier extends Qualifier {
 
     constructor(scorers: Scorer[], action: Action, threshold: number) {
         super(scorers, action);
+        logger.debug("scorers: " + scorers[0].score(undefined));
         this.threshold = threshold;
     }
 
@@ -23,8 +24,7 @@ export class AllOrNothingQualifier extends Qualifier {
             .map(scorer => scorer.score(context))
             // sum them up
             .reduce((acc, val) => acc + val, 0);
-            console.log(`AllOrNothingQualifier::score - sum is ${sum}, threshold is ${this.threshold}`);
-        winston.debug(`AllOrNothingQualifier::score - sum is ${sum}, threshold is ${this.threshold}`);
+        logger.debug(`AllOrNothingQualifier::score - sum is ${sum}, threshold is ${this.threshold}`);
 
         // return the the sum if over the threshold, or 0
         return Promise.resolve(sum > this.threshold ? sum : 0);

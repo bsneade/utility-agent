@@ -5,31 +5,23 @@
   "author": "Brad Sneade",
   "license": "MIT",
   "scripts": {
-    "test": "jest --forceExit",
+    "test": "jasmine-ts \"src/**/*.test.ts\"",
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "pretest": "npm run lint"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "Qualifier((\\.|/)(test|spec))\\.tsx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "json"
-    ]
-  },
   "dependencies": {
     "winston": "^2.4.0"
   },
   "devDependencies": {
-    "@types/jest": "^21.1.4",
+    "@types/jasmine": "^2.8.2",
     "@types/winston": "^2.3.6",
-    "jest": "^21.2.1",
-    "ts-jest": "^21.1.3",
+    "jasmine": "^2.8.0",
+    "jasmine-ts": "^0.2.1",
+    "karma": "^1.5.0",
+    "karma-typescript": "3.0.8",
+    "ts-mockito": "^2.2.7",
     "typescript": "^2.5.3"
   }
 }

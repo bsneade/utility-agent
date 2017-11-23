@@ -11,7 +11,6 @@ export class MockScorer extends Scorer {
     }
 
     score(context: Context): number {
-        console.log("returning " + this.resultScore);
         return this.resultScore;
     }
 

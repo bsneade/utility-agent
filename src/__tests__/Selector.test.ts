@@ -1,54 +1,62 @@
-import * as winston from "winston";
+import * as logger from "winston";
+
+import { mock, when, instance, verify, spy } from "ts-mockito";
 
 import { HighestScoringSelector } from "../HighestScoringSelector";
 import { FirstScoringSelector } from "../FirstScoringSelector";
 
-jest.mock("./MockContext");
 import { MockContext } from "./MockContext";
 import { Qualifier } from "../Qualifier";
-jest.mock("./MockQualifier");
 import { MockQualifier } from "./MockQualifier";
 import { Scorer } from "../Scorer";
-jest.mock("./MockScorer");
 import { MockScorer } from "./MockScorer";
-jest.mock("./MockAction");
 import { MockAction } from "./MockAction";
 
-const hsSelector = new HighestScoringSelector();
-
-test("HighestScoringSelector select", () => {
-    // set up our mocks
-    const context = new MockContext();
-    const action = new MockAction();
-    const qualifiers = [] as Array<Qualifier>;
-    qualifiers.push(new MockQualifier([new MockScorer(50)], action));
-    qualifiers.push(new MockQualifier([new MockScorer(49)], action));
-
-    // invoke the method under test
-    hsSelector.select(context, qualifiers, undefined)
-        .then(score => { expect(score).toBe(qualifiers[0]); });
-
-    // assert our mocks
-    expect(qualifiers[0].score).toBeCalled();
-    expect(qualifiers[1].score).toBeCalled();
+logger.configure({
+    level: "debug",
+    transports: [
+        new logger.transports.Console({
+            colorize: true
+        })
+    ]
 });
 
-const fsSelector = new FirstScoringSelector();
+describe("Selector", () => {
 
-test("FirstScoringSelector select", () => {
-    const context = new MockContext();
-    const action = new MockAction();
-    const qualifiers = [] as Array<Qualifier>;
-    qualifiers.push(new MockQualifier([new MockScorer(50)], action)); // test the threshold case
-    qualifiers.push(new MockQualifier([new MockScorer(55)], action)); // should be returned
-    qualifiers.push(new MockQualifier([new MockScorer(51)], action)); // test that we didn't keep processing along
+    it("HighestScoringSelector select", () => {
+        // set up our mocks
+        const context = new MockContext();
+        const action = new MockAction();
+        const qualifiers = [new MockQualifier([new MockScorer(50)], action),
+            new MockQualifier([new MockScorer(49)], action)] as Array<Qualifier>;
+        const spiedQualifiers = qualifiers.map(qualifier => spy(qualifier));
 
-    // invoke the method under test
-    hsSelector.select(context, qualifiers, 50) // should be higher than 50
-        .then(score => { expect(score).toBe(qualifiers[1]); }); // the first one to hit the threshold
+        // invoke the method under test
+        new HighestScoringSelector().select(context, qualifiers, undefined)
+            .then(score => { expect(score).toBe(qualifiers[0]); })
+            .catch(error => fail(error));
 
-    // assert our mocks
-    expect(qualifiers[0].score).toBeCalled();
-    expect(qualifiers[1].score).toBeCalled();
-    expect(qualifiers[2].score).toBeCalled();
+        // assert our mocks
+        verify(spiedQualifiers[0].score(context)).called();
+        verify(spiedQualifiers[1].score(context)).called();
+    });
+
+    it("FirstScoringSelector select", () => {
+        const context = new MockContext();
+        const action = new MockAction();
+        const qualifiers = [new MockQualifier([new MockScorer(50)], action), // test the threshold case
+            new MockQualifier([new MockScorer(55)], action), // should be returned
+            new MockQualifier([new MockScorer(51)], action)] as Array<Qualifier>; // test that we didn't keep processing along
+        const spiedQualifiers = qualifiers.map(qualifier => spy(qualifier));
+
+        // invoke the method under test
+        new FirstScoringSelector().select(context, qualifiers, 50) // should be higher than 50
+            .then(score => { expect(score).toBe(qualifiers[1]); }) // the first one to hit the threshold
+            .catch(error => fail(error));
+
+        // assert our mocks
+        verify(spiedQualifiers[0].score(context)).called();
+        verify(spiedQualifiers[1].score(context)).called();
+        verify(spiedQualifiers[2].score(context)).called();
+    });
 });
