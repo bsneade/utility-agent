@@ -2,16 +2,26 @@
   "name": "utility-agent",
   "version": "1.0.0",
   "description": "Utility Agent AI",
-  "main": "UtilityAgent.js",
-  "scripts": {
-    "test": "jest"
-  },
   "author": "Brad Sneade",
   "license": "MIT",
+  "scripts": {
+    "test": "jasmine-ts \"src/**/*.test.ts\"",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "pretest": "npm run lint"
+  },
   "dependencies": {
-    "winston": "^2.3.1"
+    "winston": "^2.4.0"
   },
   "devDependencies": {
-    "jest": "^19.0.2"
+    "@types/jasmine": "^2.8.2",
+    "@types/winston": "^2.3.6",
+    "jasmine": "^2.8.0",
+    "jasmine-ts": "^0.2.1",
+    "karma": "^1.5.0",
+    "karma-typescript": "3.0.8",
+    "ts-mockito": "^2.2.7",
+    "typescript": "^2.5.3"
   }
 }
