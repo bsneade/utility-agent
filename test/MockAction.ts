@@ -1,5 +1,5 @@
-import { Action } from "../Action";
-import { Context } from "../Context";
+import { Action } from "../src/Action";
+import { Context } from "../src/Context";
 
 export class MockAction implements Action {
     name: string;

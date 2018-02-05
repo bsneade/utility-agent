@@ -1,5 +1,5 @@
-import { Scorer } from "../Scorer";
-import { Context } from "../Context";
+import { Scorer } from "../src/Scorer";
+import { Context } from "../src/Context";
 
 export class MockScorer extends Scorer {
 

@@ -2,15 +2,15 @@ import * as logger from "winston";
 
 import { mock, when, instance, verify, spy } from "ts-mockito";
 
-import { Context } from "../Context";
+import { Context } from "../src/Context";
 import { MockAction } from "./MockAction";
 import { MockContext } from "./MockContext";
-import { Scorer } from "../Scorer";
+import { Scorer } from "../src/Scorer";
 import { MockScorer } from "./MockScorer";
 
-import { AllOrNothingQualifier } from "../AllOrNothingQualifier";
-import { SumOfChildrenQualifier } from "../SumOfChildrenQualifier";
-import { FixedQualifier } from "../FixedQualifier";
+import { AllOrNothingQualifier } from "../src/AllOrNothingQualifier";
+import { SumOfChildrenQualifier } from "../src/SumOfChildrenQualifier";
+import { FixedQualifier } from "../src/FixedQualifier";
 
 logger.configure({
     level: "debug",

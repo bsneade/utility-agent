@@ -1,7 +1,7 @@
 import * as logger from "winston";
 
-import { Scorer } from "../Scorer";
-import { Context } from "../Context";
+import { Scorer } from "../src/Scorer";
+import { Context } from "../src/Context";
 import { MockScorer } from "./MockScorer";
 
 logger.configure({

@@ -1,6 +1,6 @@
-import { Qualifier } from "../Qualifier";
-import { Context } from "../Context";
-import { Selector } from "../Selector";
+import { Qualifier } from "../src/Qualifier";
+import { Context } from "../src/Context";
+import { Selector } from "../src/Selector";
 
 export class MockSelector implements Selector {
     /**
