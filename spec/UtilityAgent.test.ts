@@ -2,12 +2,12 @@ import * as logger from "winston";
 
 import { mock, when, instance, verify, spy } from "ts-mockito";
 
-import { UtilityAgent } from "../UtilityAgent";
+import { UtilityAgent } from "../src/UtilityAgent";
 
 import { MockContext } from "./MockContext";
-import { Qualifier } from "../Qualifier";
+import { Qualifier } from "../src/Qualifier";
 import { MockQualifier } from "./MockQualifier";
-import { Scorer } from "../Scorer";
+import { Scorer } from "../src/Scorer";
 import { MockScorer } from "./MockScorer";
 import { MockAction } from "./MockAction";
 import { MockSelector } from "./MockSelector";

@@ -2,13 +2,13 @@ import * as logger from "winston";
 
 import { mock, when, instance, verify, spy } from "ts-mockito";
 
-import { HighestScoringSelector } from "../HighestScoringSelector";
-import { FirstScoringSelector } from "../FirstScoringSelector";
+import { HighestScoringSelector } from "../src/HighestScoringSelector";
+import { FirstScoringSelector } from "../src/FirstScoringSelector";
 
 import { MockContext } from "./MockContext";
-import { Qualifier } from "../Qualifier";
+import { Qualifier } from "../src/Qualifier";
 import { MockQualifier } from "./MockQualifier";
-import { Scorer } from "../Scorer";
+import { Scorer } from "../src/Scorer";
 import { MockScorer } from "./MockScorer";
 import { MockAction } from "./MockAction";
 

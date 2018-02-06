@@ -1,7 +1,7 @@
-import { Qualifier } from "../Qualifier";
-import { Context } from "../Context";
-import { Action } from "../Action";
-import { Scorer } from "../Scorer";
+import { Qualifier } from "../src/Qualifier";
+import { Context } from "../src/Context";
+import { Action } from "../src/Action";
+import { Scorer } from "../src/Scorer";
 
 export class MockQualifier extends Qualifier {
     public constructor(scorers: Scorer[], action: Action) {

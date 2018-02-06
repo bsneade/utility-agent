@@ -1,4 +1,4 @@
-import { Context } from "../Context";
+import { Context } from "../src/Context";
 
 export class MockContext implements Context {
 

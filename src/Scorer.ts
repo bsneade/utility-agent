@@ -46,8 +46,8 @@ export abstract class Scorer {
      * in marginal utility. As the independent variable increases, the marginal utility decrease
      * diminishes.
      */
-    exponentialDecayFunction(value: number, power: number): number {
-        return 0 < value && value < 1 ? Math.pow(value, power) : value;
+    exponentialDecayFunction(power: number, value: number): number {
+        return 0 < power && power < 1 ? Math.pow(value, power) : power;
     }
 
     /**
