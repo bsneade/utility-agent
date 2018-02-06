@@ -5,7 +5,8 @@
   "author": "Brad Sneade",
   "license": "MIT",
   "scripts": {
-    "test": "jasmine-ts \"test/**/*.test.ts\"",
+    "test": "jasmine-ts \"spec/**/*.test.ts\"",
+    "it": "jasmine-ts \"it/**/*.test.ts\"",
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",

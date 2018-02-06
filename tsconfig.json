@@ -14,7 +14,8 @@
             "*": [
                 "node_modules/*"
             ]
-        }
+        },
+        "lib": [ "es6" ]
     },
     "include": [
         "src/**/*"

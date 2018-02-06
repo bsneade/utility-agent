@@ -57,4 +57,16 @@ describe("Scorer", () => {
         expect(scorer.decreasingRateOfIncreaseFunction(2, -1)).toBe(2);
     });
 
+    it("Exponential Decay function, value below 0", () => {
+        expect(scorer.exponentialDecayFunction(0, .5)).toBe(0);
+    });
+
+    it("Exponential Decay function, value above 1", () => {
+        expect(scorer.exponentialDecayFunction(1, .5)).toBe(1);
+    });
+
+    it("Exponential Decay function, value in range", () => {
+        expect(scorer.exponentialDecayFunction(.9, .1)).toBe(0.12589254117941673);
+    });
+
 });
