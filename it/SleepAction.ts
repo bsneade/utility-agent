@@ -1,5 +1,3 @@
-import * as logger from "winston";
-
 import { Action } from "../src/Action";
 import { Context } from "../src/Context";
 import { ITContext } from "./ITContext";
@@ -16,9 +14,9 @@ export class SleepAction implements Action {
                     itContext.energy = 1;
                 }
                 itContext.hunger += .1; // increase the hunger while asleep
-                logger.info(`Sleeping. Energy now ${itContext.energy}`);
+                console.info(`Sleeping. Energy now ${itContext.energy}`);
             } else {
-                logger.warn(`Already rested.  Waiting instead.`)
+                console.warn(`Already rested.  Waiting instead.`)
                 // TODO - invoke the wait action
             }
             
@@ -27,7 +25,7 @@ export class SleepAction implements Action {
     }
 
     terminated(context: Context): Context {
-    	logger.info("Terminated SleepAction");
+    	console.info("Terminated SleepAction");
         return context;
     }
 }

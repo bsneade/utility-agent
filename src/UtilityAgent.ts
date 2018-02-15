@@ -1,5 +1,3 @@
-import * as winston from "winston";
-
 import { Selector } from "./Selector";
 import { Qualifier } from "./Qualifier";
 import { Context } from "./Context";
@@ -16,18 +14,18 @@ export class UtilityAgent {
 
     tick(context: Context, defaultValue: number): Promise<Action> {
         try {
-            winston.debug("UtilityAgent: Performing Tick");
+            console.log("UtilityAgent: Performing Tick");
             return this.selector.select(context, this.qualifiers, defaultValue)
                 .then(value => {
-                    winston.debug("UtilityAgent::tick - selected action: " + JSON.stringify(value));
+                    console.log("UtilityAgent::tick - selected action: " + JSON.stringify(value));
                     return Promise.resolve(value.action);
                 })
                 .catch(error => {
-                    winston.error("UtilityAgent::tick - error with selector: " + error);
+                    console.error("UtilityAgent::tick - error with selector: " + error);
                     return Promise.reject(error);
                 });
         } catch (error) {
-            winston.error("UtilityAgent::tick - error: " + error);
+            console.error("UtilityAgent::tick - error: " + error);
             return Promise.reject(error);
         }
     }

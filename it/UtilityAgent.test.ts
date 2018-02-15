@@ -1,5 +1,3 @@
-import * as logger from "winston";
-
 import { UtilityAgent } from "../src/UtilityAgent";
 
 import { Qualifier } from "../src/Qualifier";
@@ -14,15 +12,6 @@ import { EatAction } from "./EatAction";
 import { HungerScorer } from "./HungerScorer";
 import { WaitAction } from "./WaitAction";
 import { BoardScorer } from "./BoardScorer";
-
-logger.configure({
-    level: "debug",
-    transports: [
-        new logger.transports.Console({
-            colorize: true
-        })
-    ]
-});
 
 describe("UtilityAgent Integeration Test", () => {
 
@@ -46,30 +35,30 @@ describe("UtilityAgent Integeration Test", () => {
         // Run some ticks and validate the outcomes
         utilityAgent.tick(context, .5)
            .then(action => { 
-               logger.info(`Action for Tick: ${JSON.stringify(action.name)}`);
+               console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
                expect(action.name).toBe("Eat");
                action.execute(context)
                    .then(localContext => {
-                       logger.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
+                       console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
                    });
                 
                return utilityAgent.tick(context, .5);
            })
            .then(action => {
-               logger.info(`Action for Tick: ${JSON.stringify(action.name)}`);
+               console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
                expect(action.name).toBe("Wait");
                action.execute(context)
                    .then(localContext => {
-                       logger.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
+                       console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
                    });
                return utilityAgent.tick(context, .5);
            })
            .then(action => {
-               logger.info(`Action for Tick: ${JSON.stringify(action.name)}`);
+               console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
                expect(action.name).toBe("Sleep");
                action.execute(context)
                    .then(localContext => {
-                       logger.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
+                       console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
                    });
            })
            .catch(error => fail(error));

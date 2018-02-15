@@ -1,5 +1,3 @@
-import * as logger from "winston";
-
 import { mock, when, instance, verify, spy } from "ts-mockito";
 
 import { Context } from "../src/Context";
@@ -11,15 +9,6 @@ import { MockScorer } from "./MockScorer";
 import { AllOrNothingQualifier } from "../src/AllOrNothingQualifier";
 import { SumOfChildrenQualifier } from "../src/SumOfChildrenQualifier";
 import { FixedQualifier } from "../src/FixedQualifier";
-
-logger.configure({
-    level: "debug",
-    transports: [
-        new logger.transports.Console({
-            colorize: true
-        })
-    ]
-});
 
 describe("Qualifier", () => {
 

@@ -1,17 +1,6 @@
-import * as logger from "winston";
-
 import { Scorer } from "../src/Scorer";
 import { Context } from "../src/Context";
 import { MockScorer } from "./MockScorer";
-
-logger.configure({
-    level: "debug",
-    transports: [
-        new logger.transports.Console({
-            colorize: true
-        })
-    ]
-});
 
 describe("Scorer", () => {
 

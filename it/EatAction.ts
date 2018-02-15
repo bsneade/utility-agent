@@ -1,5 +1,3 @@
-import * as logger from "winston";
-
 import { Action } from "../src/Action";
 import { Context } from "../src/Context";
 import { ITContext } from "./ITContext";
@@ -15,9 +13,9 @@ export class EatAction implements Action {
                 if (itContext.hunger < 0) {
                     itContext.hunger = 0;
                 }
-                logger.info(`Eating. Hunger now ${itContext.hunger}`);
+                console.info(`Eating. Hunger now ${itContext.hunger}`);
             } else {
-                logger.warn(`Already saited.  Waiting instead.`)
+                console.warn(`Already saited.  Waiting instead.`)
                 // TODO - invoke the wait action
             }
             
@@ -26,7 +24,7 @@ export class EatAction implements Action {
     }
 
     terminated(context: Context): Context {
-    	logger.info("Terminated EatAction");
+    	console.info("Terminated EatAction");
         return context;
     }
 }

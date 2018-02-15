@@ -1,5 +1,3 @@
-import * as logger from "winston";
-
 import { mock, when, instance, verify, spy } from "ts-mockito";
 
 import { UtilityAgent } from "../src/UtilityAgent";
@@ -12,16 +10,7 @@ import { MockScorer } from "./MockScorer";
 import { MockAction } from "./MockAction";
 import { MockSelector } from "./MockSelector";
 
-logger.configure({
-    level: "debug",
-    transports: [
-        new logger.transports.Console({
-            colorize: true
-        })
-    ]
-});
-
-describe("UtilityAgent", () => {
+describe("UtilityAgent Integeration Test", () => {
 
     it("Tick", () => {
         // set up our mocks

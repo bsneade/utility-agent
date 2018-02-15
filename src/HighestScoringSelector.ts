@@ -1,5 +1,3 @@
-import * as winston from "winston";
-
 import { Qualifier } from "./Qualifier";
 import { Context } from "./Context";
 import { Selector } from "./Selector";
@@ -13,14 +11,14 @@ export class HighestScoringSelector implements Selector {
         const qualifierPromises = qualifiers.map(qualifier => {
             // TODO - something seems wrong here, but it seems to work
             return qualifier.score(context).then(value => {
-                winston.debug(`${qualifier.action.name} scored as ${value}`);
+                console.log(`${qualifier.action.name} scored as ${value}`);
                 return { qualifier: qualifier, value: value };
             });
         });
         return Promise.all(qualifierPromises)
             .then(values => {
                 const highest = values.reduce((prev, current) => (prev.value > current.value) ? prev : current);
-                winston.debug("HighestScoringSelector::select - " + JSON.stringify(highest));
+                console.log("HighestScoringSelector::select - " + JSON.stringify(highest));
                 return Promise.resolve(highest.qualifier);
             })
             .catch(error => { return Promise.reject(error); });

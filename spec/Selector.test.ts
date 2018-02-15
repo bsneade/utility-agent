@@ -1,5 +1,3 @@
-import * as logger from "winston";
-
 import { mock, when, instance, verify, spy } from "ts-mockito";
 
 import { HighestScoringSelector } from "../src/HighestScoringSelector";
@@ -11,15 +9,6 @@ import { MockQualifier } from "./MockQualifier";
 import { Scorer } from "../src/Scorer";
 import { MockScorer } from "./MockScorer";
 import { MockAction } from "./MockAction";
-
-logger.configure({
-    level: "debug",
-    transports: [
-        new logger.transports.Console({
-            colorize: true
-        })
-    ]
-});
 
 describe("Selector", () => {
 
