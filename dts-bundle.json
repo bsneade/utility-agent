@@ -1,0 +1,4 @@
+{
+    "name": "utility-agent",
+    "main": "dist/UtilityAgent.d.ts"
+}

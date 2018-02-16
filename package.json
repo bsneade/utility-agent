@@ -1,24 +1,28 @@
 {
   "name": "utility-agent",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Utility Agent AI",
   "author": "Brad Sneade",
   "license": "MIT",
   "main": "dist/UtilityAgent.js",
-  "files": ["dist/"],
+  "types": "dist/utility-agent.d.ts",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "test": "jasmine-ts \"spec/**/*.test.ts\"",
     "it": "jasmine-ts \"it/**/*.test.ts\"",
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "pretest": "npm run lint"
+    "pretest": "npm run lint",
+    "bundle": "dts-bundle --configJson dts-bundle.json"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jasmine": "^2.8.2",
     "@types/winston": "^2.3.6",
+    "dts-bundle": "^0.7.3",
     "jasmine": "^2.8.0",
     "jasmine-ts": "^0.2.1",
     "karma": "^1.5.0",
