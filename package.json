@@ -16,7 +16,7 @@
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "pretest": "npm run lint",
-    "bundle": "dts-bundle --configJson dts-bundle.json --out index.d.ts"
+    "bundle": "dts-bundle --name utility-agent --main dist/**/*.d.ts --out ../index.d.ts --outputAsModuleFolder"
   },
   "dependencies": {},
   "devDependencies": {
