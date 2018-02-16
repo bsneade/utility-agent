@@ -1,4 +1,5 @@
 {
     "name": "utility-agent",
-    "main": "dist/UtilityAgent.d.ts"
+    "main": "dist/**/*.d.ts",
+    "outputAsModuleFolder": true
 }

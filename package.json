@@ -5,7 +5,7 @@
   "author": "Brad Sneade",
   "license": "MIT",
   "main": "dist/UtilityAgent.js",
-  "types": "dist/utility-agent.d.ts",
+  "types": "index.d.ts",
   "files": [
     "dist/"
   ],
@@ -16,7 +16,7 @@
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "pretest": "npm run lint",
-    "bundle": "dts-bundle --configJson dts-bundle.json"
+    "bundle": "dts-bundle --configJson dts-bundle.json --out index.d.ts"
   },
   "dependencies": {},
   "devDependencies": {
