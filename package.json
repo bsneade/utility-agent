@@ -7,6 +7,7 @@
   "main": "dist/UtilityAgent.js",
   "types": "index.d.ts",
   "files": [
+    "index.d.ts",
     "dist/"
   ],
   "scripts": {
