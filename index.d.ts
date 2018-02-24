@@ -1,11 +1,14 @@
-export * from './dist/Action.d.ts';
-export * from 'dist/AllOrNothingQualifier.d.ts';
-export * from 'dist/Context.d.ts';
-export * from 'dist/FirstScoringSelector.d.ts';
-export * from 'dist/FixedQualifier.d.ts';
-export * from 'dist/HighestScoringSelector.d.ts';
-export * from 'dist/Qualifier.d.ts';
-export * from 'dist/Scorer.d.ts';
-export * from 'dist/Selector.d.ts';
-export * from 'dist/SumOfChildrenQualifier.d.ts';
-export * from 'dist/UtilityAgent.d.ts';
+export { Context } from './dist/Context';
+export { Action } from './dist/Action';
+export { Scorer } from './dist/Scorer';
+export { Qualifier } from './dist/Qualifier';
+export { Selector } from './dist/Selector';
+
+export { UtilityAgent } from './dist/UtilityAgent';
+
+export { AllOrNothingQualifier } from './dist/AllOrNothingQualifier';
+export { FixedQualifier } from './dist/FixedQualifier';
+export { SumOfChildrenQualifier } from './dist/SumOfChildrenQualifier';
+
+export { FirstScoringSelector } from './dist/FirstScoringSelector';
+export { HighestScoringSelector } from './dist/HighestScoringSelector';
