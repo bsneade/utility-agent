@@ -1,9 +1,4 @@
-import { UtilityAgent } from "../src/UtilityAgent";
-
-import { Qualifier } from "../src/Qualifier";
-import { Scorer } from "../src/Scorer";
-import { HighestScoringSelector } from "../src/HighestScoringSelector";
-import { SumOfChildrenQualifier } from "../src/SumOfChildrenQualifier";
+import { UtilityAgent, Qualifier, Scorer, HighestScoringSelector, SumOfChildrenQualifier } from "..";
 
 import { ITContext } from "./ITContext";
 import { SleepAction } from "./SleepAction";

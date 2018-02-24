@@ -1,6 +1,5 @@
-import { Scorer } from "../src/Scorer";
+import { Scorer, Context } from "..";
 
-import { Context } from "../src/Context";
 import { ITContext } from "./ITContext";
  
 export class EnergyScorer extends Scorer {

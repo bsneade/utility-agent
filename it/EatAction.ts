@@ -1,5 +1,5 @@
-import { Action } from "../src/Action";
-import { Context } from "../src/Context";
+import { Action, Context } from "..";
+
 import { ITContext } from "./ITContext";
 
 export class EatAction implements Action {
