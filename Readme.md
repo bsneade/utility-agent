@@ -10,9 +10,17 @@ For some more information check out [Wikipedia - Utility Based Agents][https://e
 
 ## Installation
 
+```
+npm install --save utility-agent
+```
+
 ## Usage
 
+For Javascript, see below.  For Typescript there is a barrel provided.  The same classes need to be extended or implemented as in Javascript.  See the [integration tests](it/UtilityAgent.test.ts).
+
 ## Create some Actions
+
+Actions are what your agent is capabile of doing.  The Action should return the modified context.
 
 ``` js
 var UtilityAgent = require("utility-agent");
@@ -33,6 +41,8 @@ module.exports = ExampleAction;
 ```
 
 ## Create some scorers
+
+Scorers calculate a utility score based on the provided context.  The base [Scorer](src/Scorer.ts) provides some utility functions for common formulas.
 
 ``` js
 var UtilityAgent = require("utility-agent");
@@ -56,6 +66,8 @@ module.exports = ExampleScorer;
 
 ## Create the Agent
 
+The Agent is the entry point and configuration for the system.  This is where you instantiate your Actions and link them to to your Scorers.  These will go into an array of [Qualifiers](src/Qualifier.ts).  Then we pick which Selector we are going to use and instantiate our UtilityAgent.
+
 ``` js
 var UtilityAgent = require("utility-agent");
 
@@ -74,6 +86,8 @@ agent = new UtilityAgent.UtilityAgent(selector, qualifiers);
 ```
 
 ## Tick the agent logic
+
+When you call the tick() method on your agent it will calculate the utilities and pick a winning Action.  It will be up to the client to invoke the action with its managed [Context](src/Context.ts).
 
 ``` js
 //Tick one cycle of the logic
