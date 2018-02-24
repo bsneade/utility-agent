@@ -1,13 +1,3 @@
-import { UtilityAgent, Qualifier, Scorer, HighestScoringSelector, SumOfChildrenQualifier } from "..";
-
-import { ITContext } from "./ITContext";
-import { SleepAction } from "./SleepAction";
-import { EnergyScorer } from "./EnergyScorer";
-import { EatAction } from "./EatAction";
-import { HungerScorer } from "./HungerScorer";
-import { WaitAction } from "./WaitAction";
-import { BoardScorer } from "./BoardScorer";
-
 describe("UtilityAgent Integeration Test", () => {
 
     it("Tick", () => {
@@ -23,20 +13,20 @@ describe("UtilityAgent Integeration Test", () => {
 
         // Create our Selector
         const selector = new HighestScoringSelector();
-        
+
         // Instantiate a new Utility Agent
         const utilityAgent = new UtilityAgent(selector, qualifiers);
 
         // Run some ticks and validate the outcomes
         utilityAgent.tick(context, .5)
-           .then(action => { 
+           .then(action => {
                console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
                expect(action.name).toBe("Eat");
                action.execute(context)
                    .then(localContext => {
                        console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
                    });
-                
+
                return utilityAgent.tick(context, .5);
            })
            .then(action => {
@@ -60,3 +50,13 @@ describe("UtilityAgent Integeration Test", () => {
     });
 
 });
+
+import { UtilityAgent, Qualifier, Scorer, HighestScoringSelector, SumOfChildrenQualifier } from "..";
+
+import { ITContext } from "./ITContext";
+import { SleepAction } from "./SleepAction";
+import { EnergyScorer } from "./EnergyScorer";
+import { EatAction } from "./EatAction";
+import { HungerScorer } from "./HungerScorer";
+import { WaitAction } from "./WaitAction";
+import { BoardScorer } from "./BoardScorer";

@@ -1,7 +1,4 @@
 import { Qualifier } from "./Qualifier";
-import { Action } from "./Action";
-import { Scorer } from "./Scorer";
-import { Context } from "./Context";
 
 /**
  * Returns a fixed score
@@ -18,3 +15,7 @@ export class FixedQualifier extends Qualifier {
         return Promise.resolve(this.value);
     }
 }
+
+import { Action } from "./Action";
+import { Scorer } from "./Scorer";
+import { Context } from "./Context";

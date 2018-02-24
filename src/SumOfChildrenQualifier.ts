@@ -1,7 +1,4 @@
-import { Action } from "./Action";
-import { Scorer } from "./Scorer";
 import { Qualifier } from "./Qualifier";
-import { Context } from "./Context";
 
 /**
  * Returns the sum of all Scorers
@@ -25,3 +22,7 @@ export class SumOfChildrenQualifier extends Qualifier {
             .catch(error => { return Promise.reject(error); } );
     }
 }
+
+import { Context } from "./Context";
+import { Action } from "./Action";
+import { Scorer } from "./Scorer";

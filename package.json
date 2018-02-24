@@ -27,6 +27,7 @@
     "karma-typescript": "3.0.8",
     "ts-mockito": "^2.2.9",
     "tslint": "^5.9.1",
+    "tslint-circular-dependencies": "^0.1.0",
     "typescript": "^2.7.2"
   }
 }

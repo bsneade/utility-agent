@@ -1,4 +1,3 @@
-import { Context } from "./Context";
 
 /** A method for calculating scores that can be reused across Qualifiers. */
 export abstract class Scorer {
@@ -59,3 +58,5 @@ export abstract class Scorer {
         return 1 / (1 + Math.pow(value, shift));
     }
 }
+
+import { Context } from "./Context";

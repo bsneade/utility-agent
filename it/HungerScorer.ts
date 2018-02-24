@@ -1,13 +1,13 @@
-import { Scorer, Context } from "..";
-
-import { ITContext } from "./ITContext";
- 
 export class HungerScorer extends Scorer {
 
-	/** Do the scoring */
+    /** Do the scoring */
     score(context: Context): number {
-    	let itContext = <ITContext> context;
-    	return this.decreasingRateOfIncreaseFunction(itContext.hunger, 0.95);
+        const itContext = <ITContext> context;
+        return this.decreasingRateOfIncreaseFunction(itContext.hunger, 0.95);
     }
 
 }
+
+import { Scorer, Context } from "..";
+
+import { ITContext } from "./ITContext";
