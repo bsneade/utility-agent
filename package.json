@@ -4,7 +4,7 @@
   "description": "Utility Agent AI",
   "author": "Brad Sneade",
   "license": "MIT",
-  "main": "dist/UtilityAgent.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/"
