@@ -5,9 +5,8 @@
   "author": "Brad Sneade",
   "license": "MIT",
   "main": "dist/UtilityAgent.js",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
-    "index.d.ts",
     "dist/"
   ],
   "scripts": {
