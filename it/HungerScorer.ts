@@ -1,3 +1,5 @@
+import { Scorer, Context } from "..";
+
 export class HungerScorer extends Scorer {
 
     /** Do the scoring */
@@ -7,7 +9,5 @@ export class HungerScorer extends Scorer {
     }
 
 }
-
-import { Scorer, Context } from "..";
 
 import { ITContext } from "./ITContext";

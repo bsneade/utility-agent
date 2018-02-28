@@ -1,3 +1,5 @@
+import { Action, Context } from "..";
+
 export class SleepAction implements Action {
     name = "Sleep";
 
@@ -26,6 +28,5 @@ export class SleepAction implements Action {
     }
 }
 
-import { Action, Context } from "..";
 import { ITContext } from "./ITContext";
 

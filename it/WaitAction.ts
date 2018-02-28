@@ -1,3 +1,5 @@
+import { Action, Context } from "..";
+
 export class WaitAction implements Action {
     name = "Wait";
 
@@ -18,5 +20,4 @@ export class WaitAction implements Action {
     }
 }
 
-import { Action, Context } from "..";
 import { ITContext } from "./ITContext";
