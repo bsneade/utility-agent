@@ -1,6 +1,3 @@
-import { Qualifier } from "./Qualifier";
-import { Context } from "./Context";
-import { Selector } from "./Selector";
 
 /**
  * Selects the Qualifier that returns the highest score.
@@ -24,3 +21,7 @@ export class HighestScoringSelector implements Selector {
             .catch(error => { return Promise.reject(error); });
     }
 }
+
+import { Selector } from "./Selector";
+import { Qualifier } from "./Qualifier";
+import { Context } from "./Context";

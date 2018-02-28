@@ -1,7 +1,4 @@
 import { Qualifier } from "./Qualifier";
-import { Action } from "./Action";
-import { Scorer } from "./Scorer";
-import { Context } from "./Context";
 
 /**
  * Returns the sum of all Scorers if all the scores are above the threshold
@@ -28,3 +25,7 @@ export class AllOrNothingQualifier extends Qualifier {
         return Promise.resolve(sum > this.threshold ? sum : 0);
     }
 }
+
+import { Action } from "./Action";
+import { Scorer } from "./Scorer";
+import { Context } from "./Context";

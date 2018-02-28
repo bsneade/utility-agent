@@ -1,7 +1,3 @@
-import { Scorer } from "./Scorer";
-import { Action } from "./Action";
-import { Context } from "./Context";
-
 /** Calculates a score that represents the utility/usefulness of its associated action. */
 export abstract class Qualifier {
     protected scorers: Scorer[];
@@ -18,3 +14,7 @@ export abstract class Qualifier {
 
     abstract score(context: Context): Promise<number>;
 }
+
+import { Scorer } from "./Scorer";
+import { Action } from "./Action";
+import { Context } from "./Context";

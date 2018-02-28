@@ -1,6 +1,4 @@
-import { Context } from "./Context";
-import { Qualifier } from "./Qualifier";
-import { Selector } from "./Selector";
+
 
 /**
  * Selects the first Qualifier that returns a score higher than the score of the Default Qualifier.
@@ -20,3 +18,7 @@ export class FirstScoringSelector implements Selector {
             .catch(error => { return Promise.reject(error); });
     }
 }
+
+import { Selector } from "./Selector";
+import { Context } from "./Context";
+import { Qualifier } from "./Qualifier";

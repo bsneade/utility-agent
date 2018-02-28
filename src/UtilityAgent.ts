@@ -1,8 +1,3 @@
-import { Selector } from "./Selector";
-import { Qualifier } from "./Qualifier";
-import { Context } from "./Context";
-import { Action } from "./Action";
-
 export class UtilityAgent {
     selector: Selector;
     qualifiers: Qualifier[];
@@ -30,3 +25,8 @@ export class UtilityAgent {
         }
     }
 }
+
+import { Selector } from "./Selector";
+import { Qualifier } from "./Qualifier";
+import { Context } from "./Context";
+import { Action } from "./Action";
