@@ -1,6 +1,6 @@
 {
   "name": "utility-agent",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "Utility Agent AI",
   "author": "Brad Sneade",
   "license": "MIT",
@@ -17,7 +17,9 @@
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "pretest": "npm run lint"
   },
-  "dependencies": {},
+  "dependencies": {
+    "npm": "^5.7.1"
+  },
   "devDependencies": {
     "@types/jasmine": "^2.8.6",
     "jasmine": "^2.99.0",
