@@ -1,6 +1,6 @@
 describe("UtilityAgent Integeration Test", () => {
 
-    it("Tick", () => {
+    it("Tick", async () => {
         // Create the context
         const context = new ITContext();
 
@@ -18,7 +18,7 @@ describe("UtilityAgent Integeration Test", () => {
         const utilityAgent = new UtilityAgent(selector, qualifiers);
 
         // Run some ticks and validate the outcomes
-        utilityAgent.tick(context, .5)
+        await utilityAgent.tick(context, .5)
            .then(action => {
                console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
                expect(action.name).toBe("Eat");
@@ -46,7 +46,7 @@ describe("UtilityAgent Integeration Test", () => {
                        console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
                    });
            })
-           .catch(error => fail(error));
+            .catch(error => fail(error));
     });
 
 });

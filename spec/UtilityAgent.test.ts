@@ -12,7 +12,7 @@ import { MockSelector } from "./MockSelector";
 
 describe("UtilityAgent Integeration Test", () => {
 
-    it("Tick", () => {
+    it("Tick", async () => {
         // set up our mocks
         const context = new MockContext();
         const action = new MockAction();

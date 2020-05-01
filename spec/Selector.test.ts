@@ -12,7 +12,7 @@ import { MockAction } from "./MockAction";
 
 describe("Selector", () => {
 
-    it("HighestScoringSelector select", () => {
+    it("HighestScoringSelector select", async () => {
         // set up our mocks
         const context = new MockContext();
         const action = new MockAction();
@@ -30,7 +30,7 @@ describe("Selector", () => {
         verify(spiedQualifiers[1].score(context)).called();
     });
 
-    it("FirstScoringSelector select", () => {
+    it("FirstScoringSelector select", async () => {
         const context = new MockContext();
         const action = new MockAction();
         const qualifiers = [new MockQualifier([new MockScorer(50)], action), // test the threshold case
