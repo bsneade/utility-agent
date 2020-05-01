@@ -10,25 +10,20 @@
     "dist/"
   ],
   "scripts": {
-    "test": "jasmine-ts \"spec/**/*.test.ts\"",
-    "it": "jasmine-ts \"it/**/*.test.ts\"",
+    "test": "jest --coverage",
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "pretest": "npm run lint"
   },
-  "dependencies": {
-    "npm": "^6.14.4"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/jasmine": "^2.8.16",
-    "jasmine": "^2.99.0",
-    "jasmine-ts": "^0.2.1",
-    "karma": "^2.0.5",
-    "karma-typescript": "^3.0.13",
+    "@types/jest": "^25.2.1",
+    "jest": "^25.5.3",
+    "ts-jest": "^25.4.0",
     "ts-mockito": "^2.5.0",
     "tslint": "^5.20.1",
-    "tslint-circular-dependencies": "^0.1.0",
-    "typescript": "^2.9.2"
+    "tslint-no-circular-imports": "^0.7.0",
+    "typescript": "^3.8.3"
   }
 }

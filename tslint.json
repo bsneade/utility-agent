@@ -57,7 +57,5 @@
     "prefer-const": true,
     "jsdoc-format": true
   },
-  "extends": [
-    "tslint-circular-dependencies"
-  ]
+  "extends": []
 }

@@ -12,7 +12,7 @@ import { FixedQualifier } from "../src/FixedQualifier";
 
 describe("Qualifier", () => {
 
-    it("All Or Nothing Qualifier, Is above threshold", () => {
+    it("All Or Nothing Qualifier, Is above threshold", async () => {
         // set up our mocks
         const action = new MockAction();
         const context = new MockContext();
@@ -37,7 +37,7 @@ describe("Qualifier", () => {
         verify(spiedScorers[2].score(context)).called();
     });
 
-    it("All Or Nothing Qualifier, Is below threshold", () => {
+    it("All Or Nothing Qualifier, Is below threshold", async () => {
         // set up our mocks
         const action = new MockAction();
         const context = new MockContext();
@@ -60,7 +60,7 @@ describe("Qualifier", () => {
         verify(spiedScorers[1].score(context)).called();
     });
 
-    it("Fixed Qualifier", () => {
+    it("Fixed Qualifier", async () => {
         const action = new MockAction();
         const context = new MockContext();
         const scorers = [] as Array<Scorer>;
@@ -76,7 +76,7 @@ describe("Qualifier", () => {
             .catch(error => fail(error));
     });
 
-    it("Sum Of Children Qualifier", () => {
+    it("Sum Of Children Qualifier", async () => {
         // set up our mocks
         const action = new MockAction();
         const context = new MockContext();
