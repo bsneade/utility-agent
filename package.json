@@ -18,16 +18,16 @@
     "pretest": "npm run lint"
   },
   "dependencies": {
-    "npm": "^6.2.0"
+    "npm": "^6.14.4"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.8.8",
+    "@types/jasmine": "^2.8.16",
     "jasmine": "^2.99.0",
     "jasmine-ts": "^0.2.1",
     "karma": "^2.0.5",
     "karma-typescript": "^3.0.13",
-    "ts-mockito": "^2.3.0",
-    "tslint": "^5.11.0",
+    "ts-mockito": "^2.5.0",
+    "tslint": "^5.20.1",
     "tslint-circular-dependencies": "^0.1.0",
     "typescript": "^2.9.2"
   }
