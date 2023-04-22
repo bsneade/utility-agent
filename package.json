@@ -17,7 +17,7 @@
     "pretest": "npm run lint"
   },
   "dependencies": {
-    "npm-check-updates": "^11.8.5"
+    "npm-check-updates": "^16.10.9"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
