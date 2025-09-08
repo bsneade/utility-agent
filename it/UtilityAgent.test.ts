@@ -18,40 +18,28 @@ describe("UtilityAgent Integeration Test", () => {
         const utilityAgent = new UtilityAgent(selector, qualifiers);
 
         // Run some ticks and validate the outcomes
-        await utilityAgent.tick(context, .5)
-           .then(action => {
-               console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
-               expect(action.name).toBe("Eat");
-               action.execute(context)
-                   .then(localContext => {
-                       console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
-                   });
+        let action = utilityAgent.tick(context, .5);
+        console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
+        expect(action.name).toBe("Eat");
+        let localContext = action.execute(context);
+        console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
 
-               return utilityAgent.tick(context, .5);
-           })
-           .then(action => {
-               console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
-               expect(action.name).toBe("Wait");
-               action.execute(context)
-                   .then(localContext => {
-                       console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
-                   });
-               return utilityAgent.tick(context, .5);
-           })
-           .then(action => {
-               console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
-               expect(action.name).toBe("Sleep");
-               action.execute(context)
-                   .then(localContext => {
-                       console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
-                   });
-           })
-            .catch(error => fail(error));
+        action = utilityAgent.tick(context, .5);
+        console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
+        expect(action.name).toBe("Wait");
+        localContext = action.execute(context);
+        console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
+
+        action = utilityAgent.tick(context, .5);
+        console.info(`Action for Tick: ${JSON.stringify(action.name)}`);
+        expect(action.name).toBe("Sleep");
+        localContext = action.execute(context);
+        console.info(`Executed ${action.name} Action: ${JSON.stringify(localContext)}`);
     });
 
 });
 
-import { UtilityAgent, Qualifier, Scorer, HighestScoringSelector, SumOfChildrenQualifier } from "..";
+import { HighestScoringSelector, Qualifier, SumOfChildrenQualifier, UtilityAgent } from "..";
 
 import { ITContext } from "./ITContext";
 import { SleepAction } from "./SleepAction";
