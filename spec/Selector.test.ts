@@ -1,4 +1,4 @@
-import { mock, when, instance, verify, spy } from "ts-mockito";
+import { spy, verify } from "ts-mockito";
 
 import { HighestScoringSelector } from "../src/HighestScoringSelector";
 import { FirstScoringSelector } from "../src/FirstScoringSelector";
@@ -6,7 +6,6 @@ import { FirstScoringSelector } from "../src/FirstScoringSelector";
 import { MockContext } from "./MockContext";
 import { Qualifier } from "../src/Qualifier";
 import { MockQualifier } from "./MockQualifier";
-import { Scorer } from "../src/Scorer";
 import { MockScorer } from "./MockScorer";
 import { MockAction } from "./MockAction";
 
@@ -21,12 +20,11 @@ describe("Selector", () => {
         const spiedQualifiers = qualifiers.map(qualifier => spy(qualifier));
 
         // invoke the method under test
-        new HighestScoringSelector().select(context, qualifiers, undefined)
-            .then(score => { expect(score).toBe(qualifiers[0]); })
-            .catch(error => fail(error));
+        const score = new HighestScoringSelector().select(context, qualifiers, undefined);
 
         // assert our mocks
         verify(spiedQualifiers[0].score(context)).called();
+        expect(score).toBe(qualifiers[0]);
         verify(spiedQualifiers[1].score(context)).called();
     });
 
@@ -39,13 +37,12 @@ describe("Selector", () => {
         const spiedQualifiers = qualifiers.map(qualifier => spy(qualifier));
 
         // invoke the method under test
-        new FirstScoringSelector().select(context, qualifiers, 50) // should be higher than 50
-            .then(score => { expect(score).toBe(qualifiers[1]); }) // the first one to hit the threshold
-            .catch(error => fail(error));
+        const score = new FirstScoringSelector().select(context, qualifiers, 50); // should be higher than 50
 
         // assert our mocks
         verify(spiedQualifiers[0].score(context)).called();
         verify(spiedQualifiers[1].score(context)).called();
+        expect(score).toBe(qualifiers[1]);
         verify(spiedQualifiers[2].score(context)).called();
     });
 });

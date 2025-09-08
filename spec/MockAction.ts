@@ -4,7 +4,7 @@ import { Context } from "../src/Context";
 export class MockAction implements Action {
     name: string;
 
-    execute(context: Context): Promise<Context> {
+    execute(context: Context): Context {
         return Promise.resolve(context);
     }
 

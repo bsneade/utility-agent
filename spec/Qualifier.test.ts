@@ -1,6 +1,4 @@
-import { mock, when, instance, verify, spy } from "ts-mockito";
-
-import { Context } from "../src/Context";
+import { spy, verify } from "ts-mockito";
 import { MockAction } from "./MockAction";
 import { MockContext } from "./MockContext";
 import { Scorer } from "../src/Scorer";
@@ -25,16 +23,15 @@ describe("Qualifier", () => {
         const qualifier = new AllOrNothingQualifier(scorers, action, 100);
 
         // run our function under test
-        qualifier.score(context)
-            .then(result => {
-                expect(result).toBe(109);
-            })
-            .catch(error => fail(error));
+        const result = qualifier.score(context);
 
         // assert our mocks
         verify(spiedScorers[0].score(context)).called();
         verify(spiedScorers[1].score(context)).called();
         verify(spiedScorers[2].score(context)).called();
+
+        // expectations
+        expect(result).toBe(109);
     });
 
     it("All Or Nothing Qualifier, Is below threshold", async () => {
@@ -49,14 +46,11 @@ describe("Qualifier", () => {
         const qualifier = new AllOrNothingQualifier(scorers, action, 100);
 
         // run our function under test
-        qualifier.score(context)
-            .then(result => {
-                expect(result).toBe(0);
-            })
-            .catch(error => fail(error));
+        const result = qualifier.score(context);
 
         // assert our mocks
         verify(spiedScorers[0].score(context)).called();
+        expect(result).toBe(0);
         verify(spiedScorers[1].score(context)).called();
     });
 
@@ -69,11 +63,9 @@ describe("Qualifier", () => {
         const qualifier = new FixedQualifier(scorers, action, 10);
 
         // run our function under test
-        qualifier.score(context)
-            .then(result => {
-                expect(result).toBe(10); // ignores the qualifiers
-            })
-            .catch(error => fail(error));
+        const result = qualifier.score(context);
+
+        expect(result).toBe(10); // ignores the qualifiers
     });
 
     it("Sum Of Children Qualifier", async () => {
@@ -89,16 +81,14 @@ describe("Qualifier", () => {
         const qualifier = new SumOfChildrenQualifier(scorers, action);
 
         // run our function under test
-        qualifier.score(context)
-            .then(result => {
-                expect(result).toBe(109);
-            })
-            .catch(error => fail(error));
+        const result = qualifier.score(context);
 
         // assert our mocks
         verify(spiedScorers[0].score(context)).called();
         verify(spiedScorers[1].score(context)).called();
         verify(spiedScorers[2].score(context)).called();
+
+        expect(result).toBe(109);
     });
 
 });

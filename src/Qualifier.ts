@@ -12,7 +12,7 @@ export abstract class Qualifier {
         return this._action;
     }
 
-    abstract score(context: Context): Promise<number>;
+    abstract score(context: Context): number;
 }
 
 import { Scorer } from "./Scorer";

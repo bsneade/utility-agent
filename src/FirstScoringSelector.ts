@@ -1,21 +1,15 @@
-
-
 /**
  * Selects the first Qualifier that returns a score higher than the score of the Default Qualifier.
  */
 export class FirstScoringSelector implements Selector {
-    select(context: Context, qualifiers: Qualifier[], defaultValue: number): Promise<Qualifier> {
+    select(context: Context, qualifiers: Qualifier[], defaultValue: number): Qualifier {
         // loop through the qualifiers and pick the first one that succeeds
-        const qualifierPromises = qualifiers.map(qualifier => {
-            // TODO - something seems wrong here, but it seems to work
-            return qualifier.score(context).then(value => { return { qualifier: qualifier, value: value }; });
-        });
-        return Promise.all(qualifierPromises)
-            .then(values => {
-                const first = values.find(value => value.value > defaultValue);
-                return Promise.resolve(first.qualifier);
-            })
-            .catch(error => { return Promise.reject(error); });
+        const first = qualifiers.map(qualifier => {
+            return {qualifier: qualifier, value: qualifier.score(context)};
+        }).find(
+            // find the first matching value
+            value_1 => value_1.value > defaultValue);
+        return first.qualifier;
     }
 }
 

@@ -21,8 +21,8 @@ export class AllOrNothingQualifier extends Qualifier {
             .reduce((acc, val) => acc + val, 0);
         console.log(`AllOrNothingQualifier::score - sum is ${sum}, threshold is ${this.threshold}`);
 
-        // return the the sum if over the threshold, or 0
-        return Promise.resolve(sum > this.threshold ? sum : 0);
+        // return the sum if over the threshold, or 0
+        return sum > this.threshold ? sum : 0;
     }
 }
 

@@ -11,7 +11,7 @@ export class MockQualifier extends Qualifier {
     /**
      * Take the first scorer and score with it
      */
-    score(context: Context): Promise<number> {
-        return Promise.resolve(this.scorers[0].score(context));
+    score(context: Context): number {
+        return this.scorers[0].score(context);
     }
 }

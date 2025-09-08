@@ -12,7 +12,7 @@ export class FixedQualifier extends Qualifier {
     }
 
     score(context: Context) {
-        return Promise.resolve(this.value);
+        return this.value;
     }
 }
 

@@ -1,5 +1,4 @@
 import { Scorer } from "../src/Scorer";
-import { Context } from "../src/Context";
 import { MockScorer } from "./MockScorer";
 
 describe("Scorer", () => {

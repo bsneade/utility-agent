@@ -7,21 +7,15 @@ export class UtilityAgent {
         this.qualifiers = qualifiers;
     }
 
-    tick(context: Context, defaultValue: number): Promise<Action> {
+    tick(context: Context, defaultValue: number): Action {
+        console.log("UtilityAgent: Performing Tick");
         try {
-            console.log("UtilityAgent: Performing Tick");
-            return this.selector.select(context, this.qualifiers, defaultValue)
-                .then(value => {
-                    console.log("UtilityAgent::tick - selected action: " + JSON.stringify(value));
-                    return Promise.resolve(value.action);
-                })
-                .catch(error => {
-                    console.error("UtilityAgent::tick - error with selector: " + error);
-                    return Promise.reject(error);
-                });
+            const action = this.selector.select(context, this.qualifiers, defaultValue).action;
+            console.debug("UtilityAgent::tick - selected action: " + JSON.stringify(action));
+            return action;
         } catch (error) {
-            console.error("UtilityAgent::tick - error: " + error);
-            return Promise.reject(error);
+            console.error("UtilityAgent::tick - error with selector: " + error);
+            throw error;
         }
     }
 }

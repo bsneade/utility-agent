@@ -3,7 +3,7 @@
  * Selects the best Qualifier from the Qualifiers attached to the Selector
  */
 export interface Selector {
-    select(context: Context, qualifiers: Qualifier[], defaultValue: number): Promise<Qualifier>;
+    select(context: Context, qualifiers: Qualifier[], defaultValue: number): Qualifier;
 }
 
 import { Context } from "./Context";

@@ -1,11 +1,10 @@
-import { mock, when, instance, verify, spy } from "ts-mockito";
+import { spy, verify } from "ts-mockito";
 
 import { UtilityAgent } from "../src/UtilityAgent";
 
 import { MockContext } from "./MockContext";
 import { Qualifier } from "../src/Qualifier";
 import { MockQualifier } from "./MockQualifier";
-import { Scorer } from "../src/Scorer";
 import { MockScorer } from "./MockScorer";
 import { MockAction } from "./MockAction";
 import { MockSelector } from "./MockSelector";
@@ -25,11 +24,10 @@ describe("UtilityAgent Integeration Test", () => {
         const utilityAgent = new UtilityAgent(selector, qualifiers);
 
         // invoke our method under test
-        utilityAgent.tick(context, 50)
-           .then(result => { expect(result).toBe(action); })
-           .catch(error => fail(error));
+        const result = utilityAgent.tick(context, 50);
 
         // assertions
+        expect(result).toBe(action);
         verify(spiedSelector.select(context, qualifiers, 50)).called();
     });
 
